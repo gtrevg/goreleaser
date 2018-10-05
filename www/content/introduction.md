@@ -8,6 +8,8 @@ menu: true
 tool for Go projects, the goal is to simplify the build, release and
 publish steps while providing variant customization options for all steps.
 
+<div id="console" style="padding-bottom: 400px"></div>
+
 GoReleaser is built for CI tools; you only need to
 [download and execute it](#ci_integration) in your build script.
 You can [customize](#Customization) your release process by
@@ -80,3 +82,34 @@ $ make setup build
 
 It is recommended to also run `dep ensure` to make sure that the dependencies
 are in the correct versions.
+
+
+<link rel="stylesheet" href="https://unpkg.com/@glorious/demo/dist/gdemo.min.css">
+<script src="https://unpkg.com/@glorious/demo/dist/gdemo.min.js"></script>
+
+<script>
+const demo = new GDemo('#console');
+const promptString = '~/go/my-project $';
+
+const commandOptions = {
+  promptString,
+  onCompleteDelay: 500
+}
+
+const respondOptions = {
+  onCompleteDelay: 500
+}
+
+
+var response = `
+
+   • releasing v1.0.0...
+   • release succeeded after 6.31s
+
+`;
+
+demo.openApp('terminal', {minHeight: '350px', promptString: promptString})
+  .command('goreleaser', commandOptions)
+  .respond(response, respondOptions)
+  .end();
+</script>
